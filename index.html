@@ -3,66 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <!-- 여기에 추가적인 스타일 시트, 스크립트 등을 추가할 수 있습니다. -->
+    <title>Number Validation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
             text-align: center;
+            margin: 50px;
         }
 
-        nav {
-            background-color: #555;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Your Website Name</h1>
-    </header>
+    <h2>Number Validation</h2>
 
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <form id="validationForm">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" name="inputString" required>
+        <br>
+        <button type="button" onclick="validateString()">Validate</button>
+    </form>
 
-    <section>
-        <h2>Welcome to our website!</h2>
-        <p>This is a simple example of a web page layout using HTML.</p>
-    </section>
+    <div id="result"></div>
 
-    <footer>
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
-    </footer>
+    <script>
+        function validateString() {
+            // Get the input value
+            var inputString = document.getElementById('inputString').value;
+
+            // Regular expression to check if the string contains a number
+            var containsNumber = /\d/.test(inputString);
+
+            // Display result
+            var resultDiv = document.getElementById('result');
+            if (containsNumber) {
+                resultDiv.textContent = 'The entered string contains a number.';
+            } else {
+                resultDiv.textContent = 'The entered string does not contain any numbers.';
+            }
+        }
+    </script>
 </body>
 </html>
-
