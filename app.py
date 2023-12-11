@@ -1003,6 +1003,9 @@ user_name_list = ['vance',
  'houston']
 consequence_list = ['0123456789', '9876543210', 'qwertyuiop', 'asdfghjkl', 'zxcvbnm', '2580', 'wasd']
 
+word_checked = False
+name_checked = False
+conse_checked = False
 
 def check_consecutive_substring(input_str, consecutive_str_list):
     for sequence in consequence_list:
@@ -1010,14 +1013,15 @@ def check_consecutive_substring(input_str, consecutive_str_list):
             substring = sequence[i:i+4]
             if substring in user_input:
                 return st.write("연속 문자열 포함됨")
+    conse_checked = True
     return st.write("연속 문자열 포함 안됨")
 
 
 # Streamlit 애플리케이션 제목
-st.title("다양한 검사를 수행하는 애플리케이션")
+st.title("비밀번호 검사 프로그램")
 
 # 텍스트 입력 필드
-user_input = st.text_input("문자열을 입력하세요", "Sample sentence to check.")
+user_input = st.text_input("비밀번호를 입력하세요", "")
 
 # 검사 및 결과 출력
 if st.button("검사"):
@@ -1025,19 +1029,19 @@ if st.button("검사"):
     # word_list 검사
     included_words = [word for word in word_list if word in user_input]
     if included_words:
-        st.write(f"입력된 문자열에 다음 단어들이 포함되어 있습니다: {', '.join(included_words)}")
+        st.write(f"비밀번호에 자주 검색되는 단어들이 포함되어 있습니다.")
     else:
-        st.write("입력된 문자열에는 word_list에 포함된 단어가 포함되어 있지 않습니다.")
+        word_checked = True
 
     # user_name_list 검사
     included_names = [name for name in user_name_list if name in user_input.lower()]
     if included_names:
-        st.write(f"입력된 문자열에 다음 이름들이 포함되어 있습니다: {', '.join(included_names)}")
+        st.write(f"비밀번호에 다음 이름이 포함되어 있습니다.")
     else:
-        st.write("입력된 문자열에는 user_name_list에 포함된 이름이 포함되어 있지 않습니다.")
+        name_checked = True
 
     # consecutive_str_list 검사
     check_consecutive_substring(user_input, consequence_list)
-    
 
-    
+    if word_checked == True and name_checked == True and conse_checked == True:
+        st.write("안전한 비밀번호입니다.")
