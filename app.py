@@ -1027,7 +1027,7 @@ if st.button("검사"):
 
     # consecutive_str_list 검사
     for conseq_str in consequence_list:
-        consecutive_count = sum(1 for i in range(len(user_input)-len(conseq_str)+1) if user_input[i:i+len(conseq_str)] == conseq_str)
+        consecutive_count = max(user_input.count(conseq_str[i:]) for i in range(len(conseq_str)))
         if consecutive_count >= 4:
             st.write(f"입력된 문자열에 연속된 문자열 '{conseq_str}'이 4개 이상 포함되어 있습니다.")
             break
