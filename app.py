@@ -1033,6 +1033,7 @@ if st.button("검사"):
                 count += 1
                 if count >= 4:
                     st.write("연속된 문자열 포함")
+                    break
             else:
                 count = 0
         count = 0
