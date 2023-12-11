@@ -1036,7 +1036,7 @@ def check_complexity(input_string):
         categories_count += 1
 
     # 가짓수가 3개인지 반환
-    return categories_count == 3
+    return categories_count >= 3
 
 # Streamlit 애플리케이션 제목
 st.title("비밀번호 검사 프로그램")
