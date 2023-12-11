@@ -1006,6 +1006,8 @@ consequence_list = ['0123456789', '9876543210', 'qwertyuiop', 'asdfghjkl', 'zxcv
 word_checked = False
 name_checked = False
 conse_checked = False
+len_checked = False
+complex_checked = False
 
 def check_consecutive_substring(input_str, consecutive_str_list):
     for sequence in consequence_list:
@@ -1050,10 +1052,14 @@ if st.button("검사"):
     # 길이 검사
     if len(user_input) < 9:
         st.write("비밀번호는 9자 이상 입력해야 합니다.")
+    else:
+        len_checked = True
 
     # 다양성 검사
     if check_complexity(user_input) != True:
         st.write("비밀번호는 대문자, 소문자, 숫자, 특수문자 중 3개 이상을 포함해야 합니다.")
+    else:
+        complex_checked = True
     
     # word_list 검사
     included_words = [word for word in word_list if word in user_input]
@@ -1075,5 +1081,5 @@ if st.button("검사"):
     else:
         conse_checked = True
 
-    if word_checked == True and name_checked == True and conse_checked == True:
+    if len_checked == True and complex_checked == True and word_checked == True and name_checked == True and conse_checked == True:
         st.write("안전한 비밀번호입니다.")
