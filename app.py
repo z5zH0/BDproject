@@ -1052,6 +1052,7 @@ if st.button("검사"):
     if len(user_input) < 9:
         st.write("비밀번호는 9자 이상 입력해야 합니다.")
 
+    # 다양성 검사
     if check_complexity(user_input) != True:
         st.write("비밀번호는 대문자, 소문자, 숫자, 특수문자 중 3개 이상을 포함해야 합니다.")
     
