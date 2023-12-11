@@ -1005,19 +1005,12 @@ consequence_list = ['0123456789', '9876543210', 'qwertyuiop', 'asdfghjkl', 'zxcv
 
 
 def check_consecutive_substring(input_str, consecutive_str_list):
-    for pattern in consecutive_str_list:
-        count = 0
-        for char in input_str:
-            if char in pattern:
-                count += 1
-                if count >= 4:
-                    st.write("연속된 문자열 포함됨")
-                    return
-            else:
-                count = 0
-        count = 0
-    else:
-        st.write("연속된 문자열 포함 안됨")
+    for sequence in consequence_list:
+        for i in range(len(sequence) - 3):
+            substring = sequence[i:i+4]
+            if substring in user_input:
+                return st.write("연속 문자열 포함됨")
+    return st.write("연속 문자열 포함 안됨")
 
 
 # Streamlit 애플리케이션 제목
@@ -1028,6 +1021,7 @@ user_input = st.text_input("문자열을 입력하세요", "Sample sentence to c
 
 # 검사 및 결과 출력
 if st.button("검사"):
+    
     # word_list 검사
     included_words = [word for word in word_list if word in user_input]
     if included_words:
@@ -1044,3 +1038,6 @@ if st.button("검사"):
 
     # consecutive_str_list 검사
     check_consecutive_substring(user_input, consequence_list)
+    
+
+    
