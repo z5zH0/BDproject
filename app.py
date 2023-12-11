@@ -1003,6 +1003,22 @@ user_name_list = ['vance',
  'houston']
 consequence_list = ['0123456789', '9876543210', 'qwertyuiop', 'asdfghjkl', 'zxcvbnm', '2580', 'wasd']
 
+def check_consecutive_substring(input_str, consecutive_str_list):
+    for pattern in consecutive_str_list:
+        count = 0
+        for char in input_str:
+            if char in pattern:
+                count += 1
+                if count >= 4:
+                    st.write("연속된 문자열 포함됨")
+                    return
+            else:
+                count = 0
+        count = 0
+    else:
+        st.write("연속된 문자열 포함 안됨")
+
+
 # Streamlit 애플리케이션 제목
 st.title("다양한 검사를 수행하는 애플리케이션")
 
@@ -1026,16 +1042,4 @@ if st.button("검사"):
         st.write("입력된 문자열에는 user_name_list에 포함된 이름이 포함되어 있지 않습니다.")
 
     # consecutive_str_list 검사
-    for pattern in consequence_list:
-        count = 0
-        for char in user_input:
-            if char in pattern:
-                count += 1
-                if count >= 4:
-                    st.write("연속된 문자열 포함")
-                    break
-            else:
-                count = 0
-        count = 0
-
-    st.write("연속된 문자열 포함 안됨")
+    check_consecutive_substring(user_input, consequence_list)
