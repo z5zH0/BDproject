@@ -1014,8 +1014,30 @@ def check_consecutive_substring(input_str, consecutive_str_list):
             if substring in user_input:
                 return st.write("연속 문자열 포함됨")
     conse_checked = True
-    return st.write("연속 문자열 포함 안됨")
+    return
 
+def check_complexity(input_string):
+    # 초기화
+    categories_count = 0
+
+    # 대문자, 소문자, 특수문자, 숫자 중 어떤 것이 사용되었는지 확인
+    has_uppercase = any(char.isupper() for char in input_string)
+    has_lowercase = any(char.islower() for char in input_string)
+    has_special_char = any(char.isascii() and not char.isalnum() for char in input_string)
+    has_digit = any(char.isdigit() for char in input_string)
+
+    # 각 가짓수가 3개인지 확인
+    if has_uppercase:
+        categories_count += 1
+    if has_lowercase:
+        categories_count += 1
+    if has_special_char:
+        categories_count += 1
+    if has_digit:
+        categories_count += 1
+
+    # 가짓수가 3개인지 반환
+    return categories_count == 3
 
 # Streamlit 애플리케이션 제목
 st.title("비밀번호 검사 프로그램")
@@ -1025,6 +1047,13 @@ user_input = st.text_input("비밀번호를 입력하세요", "")
 
 # 검사 및 결과 출력
 if st.button("검사"):
+    
+    # 길이 검사
+    if len(user_input) < 9:
+        st.write("비밀번호는 9자 이상 입력해야 합니다.")
+
+    if check_complexity(user_input) != True:
+        st.write("비밀번호는 대문자, 소문자, 숫자, 특수문자 중 3개 이상을 포함해야 합니다.")
     
     # word_list 검사
     included_words = [word for word in word_list if word in user_input]
