@@ -1026,10 +1026,15 @@ if st.button("검사"):
         st.write("입력된 문자열에는 user_name_list에 포함된 이름이 포함되어 있지 않습니다.")
 
     # consecutive_str_list 검사
-    for conseq_str in consequence_list:
-        consecutive_count = max(user_input.count(conseq_str[i:]) for i in range(len(conseq_str)))
-        if consecutive_count >= 4:
-            st.write(f"입력된 문자열에 연속된 문자열 '{conseq_str}'이 4개 이상 포함되어 있습니다.")
-            break
-    else:
-        st.write("입력된 문자열에는 consecutive_str_list에 포함된 연속된 문자열이 4개 이상 포함되어 있지 않습니다.")
+    for pattern in consequence_list:
+        count = 0
+        for char in user_input:
+            if char in pattern:
+                count += 1
+                if count >= 4:
+                    st.write("연속된 문자열 포함")
+            else:
+                count = 0
+        count = 0
+
+    st.write("연속된 문자열 포함 안됨")
